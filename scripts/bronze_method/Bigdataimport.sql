@@ -2,6 +2,8 @@
 
 -- and must create empty table in MYSQL
 
+-- set autocommit off to rollback the data if you ever make
+
 set global local_infile = 1; -- to accept by SQL from local files
 
 create database/schema bronze
