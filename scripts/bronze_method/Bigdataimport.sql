@@ -28,7 +28,7 @@ cst_create_date date
 -- C:/ProgramData/MySQL/MySQL Server 8.0/Uploads
 
 
-LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/cust_info.csv'
+LOAD DATA local INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/cust_info.csv'
 INTO TABLE bronze.crm_cust_info
 FIELDS TERMINATED BY ','
 IGNORE 1 ROWS;
@@ -81,5 +81,59 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
 select * from crm_sales_details;
+
+commit;
+
+
+CREATE TABLE bronze.erp_loc_a101 (
+    cid    NVARCHAR(50),
+    cntry  NVARCHAR(50)
+);
+
+LOAD DATA LOCAL INFILE
+'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/loc_a101.csv'
+INTO TABLE bronze.erp_loc_a101
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+select * from erp_loc_a101;
+
+
+CREATE TABLE bronze.erp_cust_az12 (
+    cid    NVARCHAR(50),
+    bdate  DATE,
+    gen    NVARCHAR(50)
+);
+
+LOAD DATA LOCAL INFILE
+'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/cust_az12.csv'
+INTO TABLE bronze.erp_cust_az12
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+select * from erp_cust_az12;
+commit;
+
+
+CREATE TABLE bronze.erp_px_cat_g1v2 (
+    id           NVARCHAR(50),
+    cat          NVARCHAR(50),
+    subcat       NVARCHAR(50),
+    maintenance  NVARCHAR(50)
+);
+
+LOAD DATA LOCAL INFILE
+'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/px_cat_g1v2.csv'
+INTO TABLE bronze.erp_px_cat_g1v2
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+select * from erp_px_cat_g1v2;
 
 commit;
