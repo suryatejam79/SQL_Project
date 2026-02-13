@@ -69,3 +69,43 @@ SELECT
 FROM bronze.crm_prd_info;
 
 commit;
+
+
+-- as there is no data cleaning just uploading full data
+insert into silver.erp_px_cat_g1v2(
+id,
+cat,
+subcat,
+maintenance)
+select *
+from bronze.erp_px_cat_g1v2;
+
+insert into silver.erp_px_cat_g1v2(
+id,
+cat,
+subcat,
+maintenance)
+select *
+from bronze.erp_px_cat_g1v2;
+
+insert into silver.erp_cust_az12(
+cid,
+bdate,
+gen)
+SELECT
+case
+when cid like 'NAS%' then SUBSTRING(cid,4,length(cid))
+else cid
+end as cid_,
+case
+when bdate > current_date() then NULL
+else bdate
+end as bdate,
+case
+when UPPER(TRIM(GEN)) in ('M','MALE') then 'Male'
+when upper(trim(GEN)) in ('F','FEMALE') then 'Female'
+else 'n/a'
+end as gen
+FROM bronze.erp_cust_az12;
+
+commit;
